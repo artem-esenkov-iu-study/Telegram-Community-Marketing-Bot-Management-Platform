@@ -49,6 +49,7 @@ public class BotService {
         existingBot.setDescription(updatedBot.getDescription());
         existingBot.setStatus(updatedBot.getStatus());
         existingBot.setCommunity(updatedBot.getCommunity());
+        existingBot.setBotToken(updatedBot.getBotToken());
 
         return botRepository.save(existingBot);
 

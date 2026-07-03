@@ -1,6 +1,7 @@
 package com.artem_esenkov_iu_study.controller;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.artem_esenkov_iu_study.model.Bot;
 import com.artem_esenkov_iu_study.model.Community;
 import com.artem_esenkov_iu_study.service.CommunityService;
+import com.artem_esenkov_iu_study.repository.CommunityRepository;
+import com.artem_esenkov_iu_study.model.MessageRequest;
 
+
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class CommunityController {
 
@@ -57,5 +62,19 @@ public class CommunityController {
     public List<Bot> getCommunityBots(@PathVariable Long id) {
         return communityService.getCommunityBots(id);
     }
+
+
+    @PostMapping("/communities/{communityId}/bots/{botId}")
+    public Bot addBotToCommunity(@PathVariable Long communityId, @PathVariable Long botId) {
+        return communityService.addBotToCommunity(communityId, botId);
+    }
+
+
+    @PostMapping("/communities/{id}/send-message")
+    public String sendMessageToCommunity(@PathVariable Long id, @RequestBody MessageRequest request) {
+        communityService.sendMessageToCommunity(id, request.getBotId(), request.getMessage());
+        return "Message sent";
+    }
     
-}
+
+}    

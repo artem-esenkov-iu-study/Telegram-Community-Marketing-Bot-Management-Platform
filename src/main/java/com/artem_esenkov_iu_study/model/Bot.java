@@ -8,6 +8,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "bots")
@@ -21,6 +23,9 @@ public class Bot {
     private String telegramUsername;
     private String description;
     private String status;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String botToken;
 
     public Bot() {}
 
@@ -61,6 +66,10 @@ public class Bot {
         return status;
     }
 
+    public String getBotToken() {
+        return botToken;
+    }
+
 
 
     public void setId(Long id) {
@@ -87,11 +96,15 @@ public class Bot {
         this.status = status;
     }
 
+    public void setBotToken(String botToken) {
+        this.botToken = botToken;
+    }
+
 
 
     @ManyToOne
     @JoinColumn(name = "community_id")
-    @JsonBackReference
+    @JsonIgnoreProperties("bots")
     private Community community;
 
 

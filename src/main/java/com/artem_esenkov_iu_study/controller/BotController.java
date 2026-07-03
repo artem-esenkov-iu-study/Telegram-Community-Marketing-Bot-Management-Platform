@@ -1,6 +1,7 @@
 package com.artem_esenkov_iu_study.controller;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.artem_esenkov_iu_study.model.Bot;
 import com.artem_esenkov_iu_study.service.BotService;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class BotController {
     

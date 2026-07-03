@@ -1,0 +1,24 @@
+.details-card{
+    max-width:900px;
+    margin:50px auto;
+    padding:35px;
+    background:#1b2531;
+    border-radius:16px;
+}
+
+.details-title{
+    color:white;
+    font-size:2.4rem;
+    margin-bottom:25px;
+}
+
+.details-info{
+    color:white;
+    line-height:1.8;
+}
+
+.details-buttons{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+}

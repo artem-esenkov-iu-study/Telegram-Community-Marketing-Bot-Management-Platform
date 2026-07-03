@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToMany;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -20,19 +21,20 @@ public class Community {
     private String telegramLink;
     private String category;
     private String memberCount;
-    private String discription;
+    private String description;
     private String status;
+    private String chatId;
 
     public Community() {}
 
-    public Community(Long id, String name, String telegramLink, String category, String memberCount, String discription, String status) {
+    public Community(Long id, String name, String telegramLink, String category, String memberCount, String description, String status) {
         
         this.id = id;
         this.name = name;
         this.telegramLink = telegramLink;
         this.category = category;
         this.memberCount = memberCount;
-        this.discription = discription;
+        this.description = description;
         this.status = status;
 
     }
@@ -59,12 +61,16 @@ public class Community {
         return memberCount;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
     public String getStatus() {
         return status;
+    }
+
+    public String getChatId() {
+        return chatId;
     }
 
 
@@ -89,18 +95,22 @@ public class Community {
         this.memberCount = memberCount;
     }
 
-    public void setDiscription(String discription) {
-        this.discription = discription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
+    public void setChatId(String chatId) {
+        this.chatId = chatId;
+    }
+
 
 
     @OneToMany(mappedBy = "community")
-    @JsonManagedReference
+    @JsonIgnoreProperties("community")
     private List<Bot> bots;
 
 
